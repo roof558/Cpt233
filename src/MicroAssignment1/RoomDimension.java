@@ -5,10 +5,11 @@ package MicroAssignment1;
  * to calculate the total cost of room carpet.
  * Object provide the total area of room dimension.
  * 
- * @author Justin Lee
+ * @author Dongjoon Lee
  * @since 09/01/2020
  * @version 1.0
  */
+
 public class RoomDimension {
 
 	private double length;
