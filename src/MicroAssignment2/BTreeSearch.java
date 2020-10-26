@@ -92,12 +92,9 @@ class BTreeNode {
 	BTreeNode search(int k) { // returns NULL if k is not present. 
 
 		int i = 0;	//Integer I is showing current location of search and always start with 0
-		while(i < n && k > keys[i]) {	//
-			if(!(i >= n)) i++;
-		}
-		
-		if(keys[i] == k) {	//return this node if program found the search value
-			return this;	//return this node.
+		while(k > keys[i]) {	//Checking all value below value k
+			if(!(i >= n)) i++;	//It should be less than n, can't be greater than number of key
+			if(key[i] == k) return this //return this node if program found the search value
 		}
 		
 		if(leaf == true) return null;	//After search current node that is leaf, report that k is not present.
