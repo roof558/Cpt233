@@ -13,6 +13,17 @@
  *   http://creativecommons.org/licenses/by-nc-nd/4.0
  */
 
+/**
+ * LinearHashTable.java
+ * Fixed version of LinearHashTable version 1 that add the method for add and remove in hash table.
+ * 
+ * @author Justin Lee
+ * @since 11/25/2020
+ * @version 2.0
+ * gitRepo url: https://github.com/roof558/CptS233.git
+ * CptS 233: MicroAssignment #3
+ */
+
 
 class LinearHashTable<K, V> extends HashTableBase<K, V>
 {
@@ -54,13 +65,22 @@ class LinearHashTable<K, V> extends HashTableBase<K, V>
         int hash = super.getHash(key);
 
         // MA TODO: find empty slot to insert (update HashItem as necessary)
+        
+        int size = _primes[_local_prime_index];	//hash table size
+        int index = hash % size;
+        
+	if(_items.get(index).isEmpty() == false) {
+		index++;
+		index = index % size;
+	}
 
-
-
+	_items.get(index).setValue(value);
+	_items.get(index).setKey(key);
+	_items.get(index).setIsEmpty(false);
+	
         // Remember how many things we are presently storing (size N)
     	//  Hint: do we always increase the size whenever this function is called?
-        // _number_of_elements++;
-
+        _number_of_elements++;
     }
 
     // Removes supplied key from hash table
@@ -68,14 +88,26 @@ class LinearHashTable<K, V> extends HashTableBase<K, V>
     {
         // Calculate hash from key
         int hash = super.getHash(key);
-
+	int size = _primes[_local_prime_index];	//hash table size 
+	int index = hash % size;
+	
         // MA TODO: find slot to remove. Remember to check for infinite loop!
         //  ALSO: Use lazy deletion - see structure of HashItem
+        
+        //HashItem temp = new HashItem("null", "null");
+	//addElement((K)temp.getKey(), (V)temp.getValue());
+        
+	if(_items.get(index).isEmpty() == false) {
+		_items.get(index).setIsEmpty(true);
+		index++;
+		index = index % size;
+	}
 
-
+	
         // Make sure decrease hashtable size
     	//  Hint: do we always reduce the size whenever this function is called?
-        // _number_of_elements--;
+      	//_number_of_elements--;
+        
         
     }
     
